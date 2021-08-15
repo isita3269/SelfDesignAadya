@@ -1,29 +1,26 @@
-var ball;
+var dessertImg, iceImg, landscapeImg;
+var ground;
+var randomground;
 
-function setup(){
-    createCanvas(500,500);
-    ball = createSprite(250,250,10,10);
-    ball.shapeColor = "red";
+function preload() {
+    dessertImg = loadImage("assets/ground2.jpg");
+
 }
 
-function draw(){
-    background("white");
-    if(keyDown(LEFT_ARROW)){
-        changePosition(-1,0);
+function setup() {
+    createCanvas(1000, 600);
+    ground = createSprite(3000, 550, width, 20);
+    ground.addImage(dessertImg);
+    ground.scale = .5;
+    ground.velocityX = -3;
+
+}
+
+function draw() {
+    background(255)
+    if (ground.x < 0) {
+        ground.x = 3000;
     }
-    else if(keyDown(RIGHT_ARROW)){
-        changePosition(1,0);
-    }
-    else if(keyDown(UP_ARROW)){
-        changePosition(0,-1);
-    }
-    else if(keyDown(DOWN_ARROW)){
-        changePosition(0,+1);
-    }
+
     drawSprites();
-}
-
-function changePosition(x,y){
-    ball.x = ball.x + x;
-    ball.y = ball.y + y;
 }
